@@ -9,7 +9,7 @@ SRCDIR := src
 #file lists
 LIB := $(shell find $(LIBDIR) -type f -name *.cpp)
 #LIB := #list library files here
-SRC := Source.cpp Maps.cpp
+SRC := Source.cpp
 OBJ := $(SRC:.cpp=.o)
 #dir/file
 OBJPATH := $(patsubst %.o,obj/%.o,$(OBJ))

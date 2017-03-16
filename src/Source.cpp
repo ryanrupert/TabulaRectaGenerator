@@ -6,66 +6,21 @@
 std::string value();
 void line(int length);
 std::string values = "abcdefghijklmnopqrstuvwxyz0123456789()`~!@#$%^&*-+=|{}[]:;\"\'<>,.?/";
+void gen(int letter_range);
+std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 int main()
 {
   srand(time(0));
+  int letter_range = 0;
+  std::cout << "How many letters and numbers would you like the table to have?"
+  << " Must be less than or equal to " << letters.length() << std::endl;
+  std::cin >> letter_range;
+  std::cin.get();
+
   std::cout << "Tabula Recta:" << std::endl;
   std::cout << std::endl;
-  std::cout << "  | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z" << std::endl;
-  std::cout << "---------------------------------------------------------------------------------------------------------" << std::endl;
-  std::cout << "A | ";
-  line(26);
-  std::cout << "B | ";
-  line(26);
-  std::cout << "C | ";
-  line(26);
-  std::cout << "D | ";
-  line(26);
-  std::cout << "E | ";
-  line(26);
-  std::cout << "F | ";
-  line(26);
-  std::cout << "G | ";
-  line(26);
-  std::cout << "H | ";
-  line(26);
-  std::cout << "I | ";
-  line(26);
-  std::cout << "J | ";
-  line(26);
-  std::cout << "K | ";
-  line(26);
-  std::cout << "L | ";
-  line(26);
-  std::cout << "M | ";
-  line(26);
-  std::cout << "N | ";
-  line(26);
-  std::cout << "O | ";
-  line(26);
-  std::cout << "P | ";
-  line(26);
-  std::cout << "Q | ";
-  line(26);
-  std::cout << "R | ";
-  line(26);
-  std::cout << "S | ";
-  line(26);
-  std::cout << "T | ";
-  line(26);
-  std::cout << "U | ";
-  line(26);
-  std::cout << "V | ";
-  line(26);
-  std::cout << "W | ";
-  line(26);
-  std::cout << "X | ";
-  line(26);
-  std::cout << "Y | ";
-  line(26);
-  std::cout << "Z | ";
-  line(26);
+  gen(letter_range);
   std::cin.get();
   return 0;
 }
@@ -88,4 +43,25 @@ void line(int length)
     index++;
   }
   std::cout << std::endl;
+}
+
+void gen(int letter_range)
+{
+  int index = 0;
+  std::cout << "  |";
+  while (letter_range > index) {
+    std::cout << " " << letters.at(index) << " ";
+    if(index >= letter_range)
+      break;
+    std::cout << "|";
+    ++index;
+  }
+  std::cout << std::endl;
+  index = 0;
+  while(letter_range > index)
+  {
+    std::cout << letters.at(index) << " | ";
+    line(letter_range);
+    ++index;
+  }
 }

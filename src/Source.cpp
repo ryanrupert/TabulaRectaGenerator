@@ -1,3 +1,9 @@
+/**
+* Created by Ryan Rupert
+* Date: 2017-03-03
+* Source: None
+* This program will generate a tabularecta
+*/
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

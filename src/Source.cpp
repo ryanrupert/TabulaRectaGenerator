@@ -11,7 +11,9 @@
 
 std::string value();
 void line(int length);
+//TODO: change the global variables to capitals
 std::string values = "abcdefghijklmnopqrstuvwxyz0123456789()`~!@#$%^&*-+=|{}[]:;\"\'<>,.?/";
+//TODO: change the global variables to capitals
 void gen(int letter_range);
 std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 void help();

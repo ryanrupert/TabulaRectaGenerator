@@ -19,6 +19,7 @@ int main()
 {
   srand(time(0));
   int letter_range = 0;
+
   std::cout << "How many letters and numbers would you like the table to have?"
   << " Must be less than or equal to " << letters.length() << std::endl;
   std::cin >> letter_range;
@@ -35,6 +36,7 @@ std::string value()
 {
   std::string temp;
   int tempint;
+
   tempint = rand()%values.length();
   temp = values.at(tempint);
   return temp;
@@ -43,6 +45,7 @@ std::string value()
 void line(int length)
 {
   int index = 0;
+
   while(index < length)
   {
     std::cout << value() << "   ";
@@ -54,6 +57,7 @@ void line(int length)
 void gen(int letter_range)
 {
   int index = 0;
+
   std::cout << "  |";
   while (letter_range > index) {
     std::cout << " " << letters.at(index) << " ";

@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <windows.h>
 
 std::string value();
 void line(int length);

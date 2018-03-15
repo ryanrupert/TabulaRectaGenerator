@@ -2,8 +2,9 @@
 * Created by Ryan Rupert
 * Date: 2017-03-03
 * Source: None
-* This program will generate a tabularecta
+* This program will generate a TabulaRecta
 */
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>

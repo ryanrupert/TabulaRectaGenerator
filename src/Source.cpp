@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string.h>
 
 std::string value();
 void line(int length);
@@ -27,7 +28,7 @@ int main(int argc, char** argv)
 	bool rSet = false;
 
 	//place the command argument code here
-	for (int i = 0; i < argc; i++) 
+	for (int i = 1; i < argc; i++) 
 	{
 		if (!strcmp(argv[i], "-n")) 
 		{
@@ -40,7 +41,7 @@ int main(int argc, char** argv)
 				return 1;
 			}
 		}
-		else if (!strcmp[i], "-h" || !strcmp(argv[i], "--help"))
+		else if (!strcmp(argv[i], "-h") || !strcmp(argv[i], "--help"))
 		{
 			help();
 			return 0;
@@ -52,10 +53,13 @@ int main(int argc, char** argv)
 		}
 	}
 
-	std::cout << "How many letters and numbers would you like the table to have?"
-	<< " Must be less than or equal to " << letters.length() << std::endl;
-	std::cin >> letter_range;
-	std::cin.get();
+	if (!rSet) 
+	{
+		std::cout << "How many letters and numbers would you like the table to have?"
+		<< " Must be less than or equal to " << letters.length() << std::endl;
+		std::cin >> letter_range;
+		std::cin.get();
+	}
 
 	std::cout << "Tabula Recta:" << std::endl;
 	std::cout << std::endl;

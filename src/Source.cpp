@@ -10,6 +10,7 @@
 #include <ctime>
 #include <string.h>
 #include <fstream>
+#include "fileExists.hpp"
 
 #define output(msg) outputf(writeFile, suppress, msg)
 
@@ -60,6 +61,11 @@ int main(int argc, char** argv)
 			i++;
 			file = argv[i];
 
+			if (fileExists(file)) 
+			{
+				error("file exists, please use a file that doesn't exist");
+				return 5;
+			}
 			if (!openFile(file)) 
 			{
 				error("the file could not be opened");

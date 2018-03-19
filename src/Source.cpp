@@ -26,6 +26,9 @@ int main(int argc, char** argv)
 	srand(time(0));
 	int letter_range = 0;
 	bool rSet = false;
+	bool writeFile = false;
+	bool suppress = false;
+	std::string file;
 
 	//place the command argument code here
 	for (int i = 1; i < argc; i++) 
@@ -41,6 +44,22 @@ int main(int argc, char** argv)
 				return 1;
 			}
 		}
+		else if (!strcmp(argv[i], "-f") || !strcmp(argv[i], "--file"))
+		{
+			writeFile = true;
+			i++;
+			file = argv[i];
+
+			if (!openFile(file)) 
+			{
+				error("the file could not be opened");
+				return 1;
+			}
+		}
+		else if (!strcmp(argv[i], "-s"))
+		{
+			suppress = true;
+		}
 		else if (!strcmp(argv[i], "-h") || !strcmp(argv[i], "--help"))
 		{
 			help();
@@ -51,6 +70,15 @@ int main(int argc, char** argv)
 			error();
 			return 1;
 		}
+	}
+	if (!writeFile && suppress) 
+	{
+		error("suppress can only be used when writing to a file");
+		if (writeFile) 
+		{
+			closeFile();
+		}
+		return 1;
 	}
 
 	if (!rSet) 
@@ -118,6 +146,8 @@ void help()
 	std::cout << std::endl;
 	std::cout << "arguments:" << std::endl;
 	std::cout << "-n [number]		Generate table with the number given." << std::endl;
+	std::cout << "-f, --file [file name]	Write the table to file." << std::endl;
+	std::cout << "-s			Suppress output." << std::endl;
 	std::cout << "-h, --help		Display help screen." << std::endl;
 }
 

@@ -99,10 +99,14 @@ int main(int argc, char** argv)
 		std::cin.get();
 	}
 
-	std::cout << "Tabula Recta:" << std::endl;
-	std::cout << std::endl;
-	gen(letter_range);
-	std::cin.get();
+	output("Tabula Recta:");
+	output("\n");
+	gen(writeFile, suppress, letter_range);
+	if (writeFile) 
+	{
+		std::cin.get();
+	}
+	closeFile();
 	return 0;
 }
 
@@ -122,30 +126,34 @@ void line(bool writeFile, bool suppress, int length)
 
 	while(index < length)
 	{
-		std::cout << value() << "   ";
+		output(value());
+		output("   ");
 		index++;
 	}
-	std::cout << std::endl;
+	output("\n");
 }
 
 void gen(bool writeFile, bool suppress, int letter_range)
 {
 	int index = 0;
 
-	std::cout << "  |";
+	output("  |");
 	while (letter_range > index) {
-		std::cout << " " << letters.at(index) << " ";
+		output(" ");
+		output(letters.at(index));
+		output(" ");
 		if(index >= letter_range)
 			break;
-		std::cout << "|";
+		output("|");
 		++index;
 	}
-	std::cout << std::endl;
+	output("\n");
 	index = 0;
 	while(letter_range > index)
 	{
-		std::cout << letters.at(index) << " | ";
-		line(letter_range);
+		output(letters.at(index));
+		output(" | ");
+		line(writeFile, suppress, letter_range);
 		++index;
 	}
 }

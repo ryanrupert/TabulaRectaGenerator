@@ -9,6 +9,9 @@
 #include <cstdlib>
 #include <ctime>
 #include <string.h>
+#include <fstream>
+
+#define output(msg) outputf(writeFile, suppress, msg)
 
 std::string value();
 void line(int length);
@@ -20,6 +23,12 @@ std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 void help();
 void error();
 void error(std::string msg);
+
+template <typename T>
+void outputf(bool sendFile, bool suppress, T msg);
+std::ofstream out;
+bool openFile(std::string file);
+void closeFile();
 
 int main(int argc, char** argv)
 {
@@ -161,4 +170,37 @@ void error(std::string msg)
 {
 	std::cout << msg << std::endl;
 	help();
+}
+
+template <typename T>
+void outputf(bool sendFile, bool suppress, T msg)
+{
+	if (!sendFile) 
+	{
+		std::cout << msg;
+	}
+	else if (sendFile && !suppress)
+	{
+		out << msg;
+		std::cout << msg;
+	}
+	else if (sendFile && suppress)
+	{
+		out << msg;
+	}
+}
+
+bool openFile(std::string file)
+{
+	out.open(file.c_str());
+	if (!out) 
+	{
+		return false;
+	}
+	return true;
+}
+
+void closeFile()
+{
+	out.close();
 }

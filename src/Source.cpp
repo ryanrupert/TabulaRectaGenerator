@@ -14,12 +14,13 @@
 #define output(msg) outputf(writeFile, suppress, msg)
 
 std::string value();
-void line(int length);
+void line(bool writeFile, bool suppress, int length);
 //TODO: change the global variables to capitals
 std::string values = "abcdefghijklmnopqrstuvwxyz0123456789()`~!@#$%^&*-+=|{}[]:;\"\'<>,.?/";
 //TODO: change the global variables to capitals
-void gen(int letter_range);
+void gen(bool writeFile, bool suppress, int letter_range);
 std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
 void help();
 void error();
 void error(std::string msg);
@@ -115,7 +116,7 @@ std::string value()
 	return temp;
 }
 
-void line(int length)
+void line(bool writeFile, bool suppress, int length)
 {
 	int index = 0;
 
@@ -127,7 +128,7 @@ void line(int length)
 	std::cout << std::endl;
 }
 
-void gen(int letter_range)
+void gen(bool writeFile, bool suppress, int letter_range)
 {
 	int index = 0;
 

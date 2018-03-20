@@ -11,6 +11,7 @@
 #include <string.h>
 #include <fstream>
 #include "fileExists.hpp"
+#include "version.h"
 
 #define output(msg) outputf(writeFile, suppress, msg)
 
@@ -75,6 +76,11 @@ int main(int argc, char** argv)
 		else if (!strcmp(argv[i], "-s"))
 		{
 			suppress = true;
+		}
+		else if (!strcmp(argv[i], "-V") || !strcmp(argv[i], "--version"))
+		{
+			version();
+			return 0;
 		}
 		else if (!strcmp(argv[i], "-h") || !strcmp(argv[i], "--help"))
 		{

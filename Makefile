@@ -15,6 +15,7 @@ OBJ := $(SRC:.cpp=.o)
 OBJPATH := $(patsubst %.o,obj/%.o,$(OBJ))
 LIBPATH := $(patsubst %.o,obj/%.o,$(LIB))
 FINAL := $(OBJPATH) $(LIBPATH)
+# https://stackoverflow.com/a/12368262/8011746
 GIT_VERSION := $(shell git describe --abbrev=4 --dirty --always --tags | cut -c2-)
 #flags
 CFLAG := -c -std=c++11 -DVERSION=\"$(GIT_VERSION)\"

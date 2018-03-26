@@ -13,14 +13,14 @@
 #include "fileExists.hpp"
 #include "version.h"
 
-#define output(msg) outputf(writeFile, suppress, msg)
+#define output(msg) outputf(writeFile, quiet, msg)
 
 std::string value();
-void line(bool writeFile, bool suppress, int length);
+void line(bool writeFile, bool quiet, int length);
 //TODO: change the global variables to capitals
 std::string values = "abcdefghijklmnopqrstuvwxyz0123456789()`~!@#$%^&*-+=|{}[]:;\"\'<>,.?/";
 //TODO: change the global variables to capitals
-void gen(bool writeFile, bool suppress, int letter_range);
+void gen(bool writeFile, bool quiet, int letter_range);
 std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 void help();
@@ -28,8 +28,8 @@ void error();
 void error(std::string msg);
 
 template <typename T>
-void outputf(bool sendFile, bool suppress, T msg);
 std::ofstream out;
+void outputf(bool sendFile, bool quiet, T msg);
 bool openFile(std::string file);
 void closeFile();
 
@@ -118,7 +118,7 @@ int main(int argc, char** argv)
 
 	output("Tabula Recta:");
 	output("\n");
-	gen(writeFile, suppress, letter_range);
+	gen(writeFile, quiet, letter_range);
 	if (writeFile) 
 	{
 		std::cin.get();
@@ -137,7 +137,7 @@ std::string value()
 	return temp;
 }
 
-void line(bool writeFile, bool suppress, int length)
+void line(bool writeFile, bool quiet, int length)
 {
 	int index = 0;
 
@@ -150,7 +150,7 @@ void line(bool writeFile, bool suppress, int length)
 	output("\n");
 }
 
-void gen(bool writeFile, bool suppress, int letter_range)
+void gen(bool writeFile, bool quiet, int letter_range)
 {
 	int index = 0;
 
@@ -170,7 +170,7 @@ void gen(bool writeFile, bool suppress, int letter_range)
 	{
 		output(letters.at(index));
 		output(" | ");
-		line(writeFile, suppress, letter_range);
+		line(writeFile, quiet, letter_range);
 		++index;
 	}
 }
@@ -200,18 +200,18 @@ void error(std::string msg)
 }
 
 template <typename T>
-void outputf(bool sendFile, bool suppress, T msg)
+void outputf(bool sendFile, bool quiet, T msg)
 {
 	if (!sendFile) 
 	{
 		std::cout << msg;
 	}
-	else if (sendFile && !suppress)
+	else if (sendFile && !quiet)
 	{
 		out << msg;
 		std::cout << msg;
 	}
-	else if (sendFile && suppress)
+	else if (sendFile && quiet)
 	{
 		out << msg;
 	}

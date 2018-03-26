@@ -39,7 +39,8 @@ int main(int argc, char** argv)
 	int letter_range = 0;
 	bool rSet = false;
 	bool writeFile = false;
-	bool suppress = false;
+	bool quiet = false;
+	bool force = false;
 	std::string file;
 
 	//place the command argument code here
@@ -56,26 +57,19 @@ int main(int argc, char** argv)
 				return 1;
 			}
 		}
-		else if (!strcmp(argv[i], "-f") || !strcmp(argv[i], "--file"))
+		else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--output"))
 		{
 			writeFile = true;
 			i++;
 			file = argv[i];
-
-			if (fileExists(file)) 
-			{
-				error("file exists, please use a file that doesn't exist");
-				return 5;
-			}
-			if (!openFile(file)) 
-			{
-				error("the file could not be opened");
-				return 1;
-			}
 		}
-		else if (!strcmp(argv[i], "-s"))
+		else if (!strcmp(argv[i], "-f") || !strcmp(argv[i], "--force"))
 		{
-			suppress = true;
+			force = true;
+		}
+		else if (!strcmp(argv[i], "-q"))
+		{
+			quiet = true;
 		}
 		else if (!strcmp(argv[i], "-V") || !strcmp(argv[i], "--version"))
 		{
@@ -93,15 +87,26 @@ int main(int argc, char** argv)
 			return 1;
 		}
 	}
-	if (!writeFile && suppress) 
+	if (fileExists(file) && !force) 
 	{
-		error("suppress can only be used when writing to a file");
+		error("file exists, please use a different file name or use the -f flag to force write");
+		return 5;
+	}
+	if (!openFile(file)) 
+	{
+		error("the file could not be opened");
+		return 1;
+	}
+	if (!writeFile && quiet) 
+	{
+		error("quiet can only be used when writing to a file");
 		if (writeFile) 
 		{
 			closeFile();
 		}
 		return 1;
 	}
+
 
 	if (!rSet) 
 	{
@@ -175,10 +180,11 @@ void help()
 	std::cout << "usage: a [arguments]" << std::endl;
 	std::cout << std::endl;
 	std::cout << "arguments:" << std::endl;
-	std::cout << "-n [number]		Generate table with the number given." << std::endl;
-	std::cout << "-f, --file [file name]	Write the table to file." << std::endl;
-	std::cout << "-s			Suppress output." << std::endl;
-	std::cout << "-h, --help		Display help screen." << std::endl;
+	std::cout << "-n [number]		generate with the number given" << std::endl;
+	std::cout << "-o, --output [file name]	use as output file" << std::endl;
+	std::cout << "-f, --force		don't ask to confirm dangerous actions" << std::endl;
+	std::cout << "-q			display no output" << std::endl;
+	std::cout << "-h, --help		display help" << std::endl;
 }
 
 void error()

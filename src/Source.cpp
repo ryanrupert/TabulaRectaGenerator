@@ -27,8 +27,8 @@ void help();
 void error();
 void error(std::string msg);
 
-template <typename T>
 std::ofstream out;
+template <typename T>
 void outputf(bool sendFile, bool quiet, T msg);
 bool openFile(std::string file);
 void closeFile();

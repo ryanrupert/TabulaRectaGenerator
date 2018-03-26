@@ -189,13 +189,13 @@ void help()
 
 void error()
 {
-	std::cout << "argument not recognized." << std::endl;
+	std::cerr << "argument not recognized." << std::endl;
 	help();
 }
 
 void error(std::string msg)
 {
-	std::cout << msg << std::endl;
+	std::cerr << msg << std::endl;
 	help();
 }
 

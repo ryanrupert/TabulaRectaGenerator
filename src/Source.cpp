@@ -87,12 +87,12 @@ int main(int argc, char** argv)
 			return 1;
 		}
 	}
-	if (fileExists(file) && !force) 
+	if (fileExists(file) && !force && writeFile) 
 	{
 		error("file exists, please use a different file name or use the -f flag to force write");
 		return 5;
 	}
-	if (!openFile(file)) 
+	if (!openFile(file) && writeFile) 
 	{
 		error("the file could not be opened");
 		return 1;

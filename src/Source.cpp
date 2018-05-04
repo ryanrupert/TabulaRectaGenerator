@@ -18,7 +18,7 @@
 std::string value();
 void line(bool writeFile, bool quiet, int length);
 //TODO: change the global variables to capitals
-std::string values = "abcdefghijklmnopqrstuvwxyz0123456789()`~!@#$%^&*-+=|{}[]:;\"\'<>,.?/";
+std::string values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789()`~!@#$%^&*-+=|{}[]:;\"\'<>,.?/\\";
 //TODO: change the global variables to capitals
 void gen(bool writeFile, bool quiet, int letter_range);
 std::string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
